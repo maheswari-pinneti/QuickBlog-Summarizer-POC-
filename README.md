@@ -159,6 +159,7 @@ Pull requests are welcome. For major changes, please open an issue first.
 ## 🗂️ Sample File: `summarizer.py` (Backend)
 
 ```python
+
 from transformers import pipeline
 from newspaper import Article
 
@@ -175,6 +176,6 @@ def extract_and_summarize(url):
 
     summary = summarizer(text[:1024], max_length=120, min_length=30, do_sample=False)
     return summary[0]['summary_text']
-
+```
 
 ---
