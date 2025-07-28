@@ -131,9 +131,14 @@ This project is for educational and demonstration purposes.
 
 If you found this project helpful, please give it a ⭐ to support!
 
-```
+
 
 ---
+
+🤝 Contributors
+Maheswari Pinneti
+
+Made with ❤️ by Maheswari Pinneti
 
 
 
