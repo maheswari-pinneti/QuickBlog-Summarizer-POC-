@@ -1,0 +1,10 @@
+flask
+flask-cors
+transformers
+torch
+newspaper3k
+beautifulsoup4
+requests
+reportlab
+Flask-Limiter
+deep-translator
