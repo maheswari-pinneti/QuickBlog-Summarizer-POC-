@@ -1,181 +1,139 @@
-# 📝 Quick Blog Summarizer
+# 🧠 QuickBlog Summarizer POC
 
-**Quick Blog Summarizer** is a lightweight AI-powered web app that lets you input any blog URL and get a concise summary within seconds using state-of-the-art NLP models from Hugging Face 🤖✨
+> An AI-powered web application that scrapes and summarizes blog content using Hugging Face Transformers. Built with React, Flask, and BeautifulSoup.
+
+---
+
+## 📌 Overview
+
+**QuickBlog Summarizer** is a Proof-of-Concept (PoC) project that allows users to input any blog URL, extract the content, and receive an AI-generated summary. It combines web scraping techniques with state-of-the-art NLP models (like **DistilBART** or **T5**) from Hugging Face to deliver concise blog summaries in real-time.
 
 ---
 
 ## 🚀 Features
 
-- 🧠 Summarizes long blogs using pre-trained models like BART or T5.
-- 🌐 Supports blogs from Medium, Dev.to, WordPress, and more.
-- ⚡ Clean and responsive UI built with React.js.
-- 🔎 Scrapes and sanitizes blog content automatically.
-- 🛠️ Easy to deploy and extend.
+- 🔗 Input any blog URL
+- 🔍 Scrape blog content using `BeautifulSoup`
+- 🤖 Summarize using Hugging Face Transformers API
+- 🌐 React frontend with clean UI
+- 🐍 Flask backend with API routing
+- 📦 Easy to set up and run locally
 
 ---
 
-## 🔧 Tech Stack
+## 🛠️ Tech Stack
 
-| Layer         | Technology                      |
-|--------------|----------------------------------|
-| Frontend      | React.js, Tailwind CSS, Axios    |
-| Backend       | Flask, BeautifulSoup, Transformers |
-| ML Model      | HuggingFace (BART or T5)         |
-| Deployment    | Render / Heroku / Railway        |
+| Frontend | Backend | AI/ML | Web Scraping | Others |
+|----------|---------|-------|--------------|--------|
+| React.js | Flask   | Hugging Face Transformers (T5 / DistilBART) | BeautifulSoup, Requests | HTML, CSS, JavaScript, Python |
 
 ---
 
-## 🖼️ Demo Preview
+## 📸 UI Preview
 
-> Coming soon...
+> *(Add screenshots or demo video here if available)*  
+> ![QuickBlog Summarizer UI](assets/demo.png)
 
 ---
 
-## 📁 Folder Structure
+## 📂 Project Structure
 
 ```
 
-quick-blog-summarizer/
-│
-├── client/                 # React frontend
-│   ├── public/
-│   └── src/
-│       ├── components/
-│       ├── App.jsx
-│       └── index.js
-│
-├── server/                 # Flask backend
-│   ├── app.py
-│   ├── summarizer.py
-│   └── requirements.txt
-│
+QuickBlog-Summarizer-POC/
+├── client/                # React frontend
+├── server/                # Flask backend
+│   ├── app.py             # Flask app logic
+│   └── summarize.py       # Web scraping and Hugging Face summarization
 ├── README.md
-└── .gitignore
+└── requirements.txt       # Python dependencies
 
 ````
 
 ---
 
-## ⚙️ Setup Instructions
+## ⚙️ Installation & Setup
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/quick-blog-summarizer.git
-cd quick-blog-summarizer
+git clone https://github.com/maheswari-pinneti/QuickBlog-Summarizer-POC-.git
+cd QuickBlog-Summarizer-POC-
 ````
 
-### 2. Setup Backend (Flask + Transformers)
+### 2. Backend Setup (Flask)
 
 ```bash
 cd server
-python -m venv venv
-source venv/bin/activate  # or venv\Scripts\activate
 pip install -r requirements.txt
 python app.py
 ```
 
-`requirements.txt` sample:
+This starts your Flask server at `http://localhost:5000`.
 
-```
-Flask
-transformers
-torch
-beautifulsoup4
-newspaper3k
-flask-cors
-```
-
-### 3. Setup Frontend (React)
+### 3. Frontend Setup (React)
 
 ```bash
-cd client
+cd ../client
 npm install
-npm run dev  # Vite or npm start if using CRA
+npm start
 ```
+
+This starts your React app at `http://localhost:3000`.
 
 ---
 
-## 🔥 API Overview
+## 🔗 API Usage (Backend Endpoint)
 
-### `POST /summarize`
+```http
+POST /summarize
+Content-Type: application/json
 
-**Request Body:**
-
-```json
 {
   "url": "https://example.com/blog-post"
 }
 ```
 
-**Response:**
+Returns a summarized blog paragraph from the content extracted.
 
-```json
-{
-  "summary": "This blog talks about..."
-}
+---
+
+## ✅ Example Use Case
+
+> Enter the URL of a long technical blog article
+> → Backend scrapes the text
+> → Hugging Face summarizes it
+> → You get a quick version of the article in seconds!
+
+---
+
+## 🤝 Contributions
+
+This is a solo project built by [Maheswari Pinneti](https://www.linkedin.com/in/maheswari-pinneti/).
+Feel free to fork, improve, or collaborate.
+
+---
+
+## 📅 Timeline
+
+* **Start Date**: July 2025
+* **Status**: 🚧 In Progress
+
+---
+
+## 📄 License
+
+This project is for educational and demonstration purposes.
+
+---
+
+## ⭐ Star This Repo
+
+If you found this project helpful, please give it a ⭐ to support!
+
 ```
 
 ---
 
-## 🧠 Model Choices
 
-* `facebook/bart-large-cnn` (default)
-* `sshleifer/distilbart-cnn-12-6`
-* `t5-small` or `t5-base` (optional)
 
-Changeable in `summarizer.py`.
-
----
-
-## 📌 TODO
-
-* [x] Basic summarization
-* [ ] Loading spinner
-* [ ] PDF download option
-* [ ] Chrome Extension (future)
-* [ ] Language switch (future)
-
----
-
-## 🤝 Contributing
-
-Pull requests are welcome. For major changes, please open an issue first.
-
----
-
-## 📜 License
-
-[MIT](LICENSE)
-
----
-
-## 🙋‍♀️ Built by [Maheswari Pinneti](https://www.linkedin.com/in/maheswari-pinneti/)
-
-````
-
----
-
-## 🗂️ Sample File: `summarizer.py` (Backend)
-
-```python
-
-from transformers import pipeline
-from newspaper import Article
-
-summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-
-def extract_and_summarize(url):
-    article = Article(url)
-    article.download()
-    article.parse()
-    text = article.text
-
-    if len(text) < 50:
-        return "Content is too short to summarize."
-
-    summary = summarizer(text[:1024], max_length=120, min_length=30, do_sample=False)
-    return summary[0]['summary_text']
-```
-
----
